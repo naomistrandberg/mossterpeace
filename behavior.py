@@ -58,10 +58,11 @@ while True:
       print( bar, ' ', label)
 
       # check if it’s time for plant to listen or to react:
-      if previous > rounded: # if humidity is decreasing ↘
+      if previous > rounded and previous > baseline: # if humidity is decreasing ↘
 
         # prevent sequential vibrations
         if has_just_vibrated == True:
+
           motor.value = 0 # don’t vibrate
           has_just_vibrated = False
 
@@ -75,17 +76,13 @@ while True:
 
           # actually assign the values we generated
           motor.value = random_intensity # random number from 0 to 1
-          print( 'vibration: ' + str( random_intensity ) )
           time.sleep( random_duration ) # vibrate for a bit
+          print( 'Vibrate!' )
 
           # set flag to true
           has_just_vibrated = True
 
-      elif previous < rounded: # if humidity is increasing ↗
-        motor.value = 0 # don’t vibrate
-        has_just_vibrated = False
-
-      else: # if humidity is steady →        
+      else: # if humidity is steady → or increasing ↗
         motor.value = 0 # don’t vibrate
         has_just_vibrated = False
     
@@ -93,6 +90,7 @@ while True:
     queue.append(rounded) # add one more reading from the sensor to queue
     queue = queue[-50:] # limit queue to the last 50 readings
     baseline = statistics.median(queue) # get median reading (to remove outliers)
+    baseline = baseline + 10 # increases baseline to avoid flunctiations on ambient humidity
 
   # give it a 1s break
   time.sleep(.25)
