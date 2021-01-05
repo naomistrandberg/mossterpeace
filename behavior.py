@@ -8,6 +8,7 @@ import dht11
 # import helper tools
 import time
 import statistics # to get median humidity from multiple readings as a baseline
+import random
 
 # initialize GPIO (no idea what this does)
 GPIO.setwarnings(False)
@@ -57,11 +58,13 @@ while True:
 
       # check if it’s time for plant to listen or to react:
       if previous > rounded: # if humidity is decreasing ↘
-      
+
         if has_just_vibrated:
           has_just_vibrated = False
         else:
-          motor.value = 1 # we can play with intensity (from 0 to 1)
+          # play with intensity (from 0 to 1):
+          motor.value = random.random() # random number from 0 to 1
+          print( random.random() )
           time.sleep(.5) # vibrate for a bit
           has_just_vibrated = True
 
