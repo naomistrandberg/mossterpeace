@@ -1,17 +1,21 @@
-# import tools
-import RPi.GPIO as GPIO
+# import tools for vibration motor
 from gpiozero import PWMOutputDevice
+
+# import tools for humidity sensor
+import RPi.GPIO as GPIO 
 import dht11
+
+# import helper tools
 import time
-import statistics # fancy math to calculate median humidity from multiple readings (for baseline)
+import statistics # to get median humidity from multiple readings as a baseline
 
 # initialize GPIO (no idea what this does)
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
 
-# set vibration motor to GPIO 21
-motor = PWMOutputDevice(21)
+# set vibration motor to GPIO 26
+motor = PWMOutputDevice(26)
 
 # initialize variables:
 queue = [] # create empty list to house humidity readings
@@ -22,7 +26,7 @@ rounded = 0 # create rounded variable and set it to 0, until first reading
 # loop forever
 while True:
 
-  # read data using pin 21
+  # read data using GPIO 21
   instance = dht11.DHT11(pin = 21)
   result = instance.read()
 
