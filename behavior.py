@@ -9,6 +9,7 @@ import dht11
 import time
 import statistics # to get median humidity from multiple readings as a baseline
 import random
+import decimal
 
 # initialize GPIO (no idea what this does)
 GPIO.setwarnings(False)
@@ -64,11 +65,12 @@ while True:
           has_just_vibrated = False
 
         elif has_just_vibrated == False:
-          # play with intensity (from 0 to 1):
-          random_intensity = random.randrange(.5,1)
+          
+          # play with intensity (from 0 to 1)
+          random_intensity = float( decimal.Decimal( random.randrange( 50, 100) ) / 100 )
 
-          # play with duration
-          random_duration = random.randrange(.2,.8)
+          # play with duration (from 0.2 to 0.8)
+          random_duration = float( decimal.Decimal( random.randrange( 20, 80) ) / 100 )
 
           # actually assign the values we generated
           motor.value = random_intensity # random number from 0 to 1
