@@ -25,8 +25,12 @@ while True:
   # check if reading was succesful
   if result.is_valid():
 
+    print('result is valid')
+
     # if there is a previous reading to set baseline humidity
     if baseline > 0:
+
+      print('baseline is larger than 0')
 
       # if there is a previous reading, store it on the previous variable
       if rounded > 0:
@@ -50,6 +54,8 @@ while True:
     queue.append(rounded) # add one more reading from the sensor to queue
     queue = queue[-50:] # limit queue to the last 50 readings
     baseline = statistics.median(queue) # get median reading (to remove outliers)
+    print( queue )
+    print( baseline )
 
   # give it a 1s break
   time.sleep(1)
