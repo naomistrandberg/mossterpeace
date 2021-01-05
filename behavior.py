@@ -15,9 +15,6 @@ import statistics
 import random
 import decimal
 
-# tries to get emojis to work better
-import emoji
-
 # initialize GPIO (no idea what this does)
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
