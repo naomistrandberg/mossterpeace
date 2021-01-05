@@ -37,6 +37,7 @@ has_just_vibrated = False # create flag to prevent long vibrations (if humidity 
 legend  = '\n'
 legend += 'How to read the chart?\n'
 legend += '\n'
+legend += ':open_umbrella::open_umbrella::open_umbrella::umbrella::umbrella::umbrella:'
 legend += '☂️☂️☂️☂️☂️☂️☂️☔️☔️☔️☔️ 75% ← Humidity in %\n'
 legend += '☂️☂️☂️☂️☂️☂️☂️☔️☔️☔️ 70% 🌿 ← Plant vibration triggered\n'
 legend += '☂️☂️☂️☂️☂️☂️☂️ ← Baseline*\n'
