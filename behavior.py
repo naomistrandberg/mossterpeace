@@ -1,5 +1,6 @@
 # import tools
 import RPi.GPIO as GPIO
+from gpiozero import PWMOutputDevice
 import dht11
 import time
 import statistics # fancy math to calculate median humidity from multiple readings (for baseline)
@@ -8,6 +9,9 @@ import statistics # fancy math to calculate median humidity from multiple readin
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
+
+# set vibration motor to GPIO 21
+motor = PWMOutputDevice(21)
 
 # initialize variables:
 queue = [] # create empty list to house humidity readings
@@ -48,7 +52,8 @@ while True:
 
       # check if it’s time for plant to listen or to react:
       if previous > rounded: # humidity is decreasing ↘
-        print( 'react' )
+        motor.value = 1 # change intensity from 0 to 1
+        time.sleep(.5)
 
       # if previous < rounded: # humidity is increasing ↗
     
