@@ -32,7 +32,7 @@ has_just_vibrated = False # create flag to prevent long vibrations (if humidity 
 
 
 # print legend
-legend  = 'How to read the emoji chart?\n\n'
+legend  = 'How to read the chart?\n\n'
 legend += '\n'
 legend += '💧💧💧💧💧💧💧💧|💧💧💧💧 75% ⟵ Humidity in %\n'
 legend += '💧💧💧💧💧💧💧💧|💧💧💧 70% 🌿 ⟵ Plant vibration triggered\n'
