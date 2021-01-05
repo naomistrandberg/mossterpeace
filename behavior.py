@@ -5,9 +5,13 @@ from gpiozero import PWMOutputDevice
 import RPi.GPIO as GPIO 
 import dht11
 
-# import helper tools
+# import tool for controlling sleep delays
 import time
-import statistics # to get median humidity from multiple readings as a baseline
+
+# import fancy math to get median humidity from multiple readings as a baseline
+import statistics 
+
+# import tools for generating random numbers between decimal ranges
 import random
 import decimal
 
@@ -109,5 +113,5 @@ while True:
     baseline = statistics.median(queue) # get median reading (to remove outliers)
     baseline = baseline + 10 # increases baseline to avoid flunctiations on ambient humidity
 
-  # give it a 1s break
+  # give it a short break between loops
   time.sleep(.25)
