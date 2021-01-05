@@ -9,11 +9,11 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
 
-# create empty list to house humidity readings
-queue = []
-
-# create baseline and set it to 0, until first reading:
-baseline = 0
+# initialize variables:
+queue = [] # create empty list to house humidity readings
+baseline = 0 # create baseline variable and set it to 0, until first reading
+previous = 0 # create previous variable to house previous humidity reading
+rounded = 0 # create rounded variable and set it to 0, until first reading
 
 # loop forever
 while True:
@@ -25,15 +25,27 @@ while True:
   # check if reading was succesful
   if result.is_valid():
 
+    # if there is a previous reading to set baseline humidity
     if baseline > 0:
 
-      # round humidity reading
+      # if there is a previous reading, store it on the previous variable
+      if rounded > 0:
+        previous = rounded
+
+      # remove decimal places from humidity reading
       rounded = round(result.humidity)
 
       # draw "chart", one drop per % point
       bar = '💧' * rounded
       label = str(rounded) + '%'
       print( bar, ' ', label)
+
+      # check if it’s time for plant to listen or to react:
+      if previous > rounded: # humidity is decreasing ↘
+        print( 'react' )
+
+      if previous > rounded: # humidity is increasing ↗
+        # do nothing
 
     # calculate baseline humidity:
     queue.append(rounded) # add one more reading from the sensor to queue
