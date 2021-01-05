@@ -95,8 +95,15 @@ while True:
         motor.value = 0
         has_just_vibrated = False
 
-      # draw bar “chart” (one drop per % point)
-      bar = '💧' * rounded
+      # draw simple bar “chart” (one drop per % point):
+      # bar = '💧' * rounded
+
+      # draw bar “chart” (one drop per % point) with baseline:
+      if rounded >= baseline:
+        bar = '💧' * baseline + '|' + '💧' * (rounded - baseline)
+      else:
+        bar = '💧' * rounded + ' ' * (baseline - rounded) + '|'
+
       label = str(rounded) + '%'
 
       # add a leaf if a vibration was triggered
@@ -105,13 +112,13 @@ while True:
         vibrated = '🌿'
 
       # print a new bar on the “chart”
-      print( bar, label, vibrated)
+      print(bar, label, vibrated)
     
     # calculate baseline humidity:
     queue.append(rounded) # add one more reading from the sensor to queue
     queue = queue[-50:] # limit queue to the last 50 readings
     baseline = statistics.median(queue) # get median reading (to remove outliers)
-    baseline = baseline + 10 # increases baseline to avoid flunctiations on ambient humidity
+    baseline = baseline + 5 # increases baseline to avoid flunctiations on ambient humidity
 
   # give it a short break between loops
   time.sleep(.25)
