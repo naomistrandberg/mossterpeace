@@ -35,18 +35,16 @@ legend  = '\n'
 legend += 'How to read the chart?\n'
 legend += '\n'
 legend += '💧💧💧💧💧💧💧 ← More drops mean more humidity\n'
-legend += '💧💧💧💧💧💧💧☔️☔️☔️☔️ ← These mean the humidity is above the ambient baseline*\n'
-legend += '💧💧💧💧💧💧💧☔️☔️☔️☔️ 75% ← This is the humidity percentage\n'
+legend += '💧💧💧💧💧💧💧☔️☔️☔️☔️ ← Drops on umbrellas mean the humidity is slightly above the baseline*\n'
+legend += '💧💧💧💧💧💧💧☔️☔️☔️☔️ 75% ← This is just the humidity percentage\n'
 legend += '💧💧💧💧💧💧💧☔️☔️☔️ 70% 🌿 ← This appears when plant vibration was triggered\n'
 legend += '\n'
-legend += '*After crossing the baseline, the first decrease in humidity will trigger a vibration.'
+legend += '*After crossing the ambient baseline, the first decrease in humidity will trigger a vibration.'
 legend += '\n'
 print( legend )
 
 # loop forever
 while True:
-
-  print('running…')
 
   # read data using GPIO 21
   instance = dht11.DHT11(pin = 21)
@@ -88,8 +86,8 @@ while True:
           # play with intensity (from .5 to 1)
           random_intensity = float( decimal.Decimal( random.randrange(50, 100) ) / 100 )
 
-          # play with duration (from .1 to .3)
-          random_duration = float( decimal.Decimal( random.randrange(10, 30) ) / 100 )
+          # play with duration (from .5 to 1)
+          random_duration = float( decimal.Decimal( random.randrange(50, 100) ) / 100 )
 
           # begin vibrating with the intensity we generated
           motor.value = random_intensity 
@@ -135,7 +133,6 @@ while True:
     baseline = statistics.median(queue) # get median reading (to remove outliers)
     baseline = baseline + 5 # increases baseline to avoid flunctiations on ambient humidity
     baseline = round(baseline) # makes sure baseline is an integer
-    print( baseline )
 
   # give it a short break between loops
-  time.sleep(1)
+  time.sleep(.5)
