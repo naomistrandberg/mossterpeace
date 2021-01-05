@@ -1,7 +1,7 @@
 from gpiozero import PWMOutputDevice
 from time import sleep
 
-motor = PWMOutputDevice(14)
+motor = PWMOutputDevice(21)
 
 while True:
 	# full intensity
