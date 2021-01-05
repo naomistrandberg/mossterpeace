@@ -18,7 +18,7 @@ baseline = 0
 # loop forever
 while True:
 
-  # read data using pin 22
+  # read data using pin 21
   instance = dht11.DHT11(pin = 21)
   result = instance.read()
 
