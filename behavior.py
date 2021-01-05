@@ -30,6 +30,19 @@ previous = 0 # create previous variable to house previous humidity reading
 rounded = 0 # create rounded variable and set it to 0, until first reading
 has_just_vibrated = False # create flag to prevent long vibrations (if humidity keeps dropping)
 
+
+# print legend
+legend  = 'How to read the emoji chart?\n\n'
+legend += '\n'
+legend += '💧💧💧💧💧💧💧💧|💧💧💧💧 75% ⟵ Humidity in %\n'
+legend += '💧💧💧💧💧💧💧💧|💧💧💧 70% 🌿 ⟵ Plant vibration triggered\n'
+legend += '💧💧💧💧💧💧💧💧| ⟵ Baseline*\n'
+legend += '\n'
+legend += '* Above this line, the first decrease in humidity triggers a vibration.'
+legend += '\n'
+
+print( legend )
+
 # loop forever
 while True:
 
