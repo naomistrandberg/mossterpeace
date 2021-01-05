@@ -55,13 +55,15 @@ while True:
       print( bar, ' ', label)
 
       # check if it’s time for plant to listen or to react:
-      if previous > rounded: # humidity is decreasing ↘
-
+      if previous > rounded: # if humidity is decreasing ↘
         motor.value = 1 # we can play with intensity (from 0 to 1)
-        time.sleep(.5)
+        time.sleep(.5) # vibrate for a bit
 
-      else: # humidity is steady or increasing ↗
-        motor.value = 0
+      elif previous < rounded: # if humidity is increasing ↗
+        motor.value = 0 # don’t vibrate
+
+      else: # if humidity is steady →        
+        motor.value = 0 # don’t vibrate
     
     # calculate baseline humidity:
     queue.append(rounded) # add one more reading from the sensor to queue
