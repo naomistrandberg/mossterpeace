@@ -46,6 +46,8 @@ print( legend )
 # loop forever
 while True:
 
+  print('running…')
+
   # read data using GPIO 21
   instance = dht11.DHT11(pin = 21)
   result = instance.read()
