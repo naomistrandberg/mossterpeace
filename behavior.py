@@ -52,39 +52,56 @@ while True:
       # remove decimal places from humidity reading
       rounded = round(result.humidity)
 
-      # draw "chart", one drop per % point
-      bar = '💧' * rounded
-      label = str(rounded) + '%'
-      print( bar, ' ', label)
-
       # check if it’s time for plant to listen or to react:
-      if previous > rounded and previous > baseline: # if humidity is decreasing ↘
+
+      # if humidity is decreasing ↘
+      if previous > rounded and previous > baseline: 
 
         # prevent sequential vibrations
-        if has_just_vibrated == True:
+        if has_just_vibrated:
 
-          motor.value = 0 # don’t vibrate
+          # do not vibrate
+          motor.value = 0
           has_just_vibrated = False
 
-        elif has_just_vibrated == False:
+        else:
 
-          # play with intensity (from 0 to 1)
+          # play with intensity (from .5 to 1)
           random_intensity = float( decimal.Decimal( random.randrange( 50, 100) ) / 100 )
 
-          # play with duration (from 0.1 to 0.3)
+          # play with duration (from .1 to .3)
           random_duration = float( decimal.Decimal( random.randrange( 10, 30) ) / 100 )
 
-          # actually assign the values we generated
-          motor.value = random_intensity # random number from 0 to 1
-          time.sleep( random_duration ) # vibrate for a bit
-          print( 'Vibrate!' )
+          # begin vibrating with the intensity we generated
+          motor.value = random_intensity 
+
+          # vibrate for a bit
+          time.sleep( random_duration ) 
+
+          # stop vibrating
+          motor.value = 0
 
           # set flag to true
           has_just_vibrated = True
 
-      else: # if humidity is steady → or increasing ↗
-        motor.value = 0 # don’t vibrate
+      # if humidity is steady → or increasing ↗
+      else: 
+
+        # do not vibrate
+        motor.value = 0
         has_just_vibrated = False
+
+      # draw bar “chart” (one drop per % point)
+      bar = '💧' * rounded
+      label = str(rounded) + '%'
+
+      # add a leaf if a vibration was triggered
+      vibrated = ''
+      if has_just_vibrated:
+        vibrated = '🌿'
+
+      # print a new bar on the “chart”
+      print( bar, label, vibrated)
     
     # calculate baseline humidity:
     queue.append(rounded) # add one more reading from the sensor to queue
