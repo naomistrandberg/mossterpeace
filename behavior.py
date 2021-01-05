@@ -135,4 +135,4 @@ while True:
     print( baseline )
 
   # give it a short break between loops
-  time.sleep(.25)
+  time.sleep(1)
