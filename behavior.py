@@ -56,10 +56,12 @@ while True:
 
       # check if it’s time for plant to listen or to react:
       if previous > rounded: # humidity is decreasing ↘
-        motor.value = 1 # change intensity from 0 to 1
+
+        motor.value = 1 # we can play with intensity (from 0 to 1)
         time.sleep(.5)
 
-      # if previous < rounded: # humidity is increasing ↗
+      else: # humidity is steady or increasing ↗
+        motor.value = 0
     
     # calculate baseline humidity:
     queue.append(rounded) # add one more reading from the sensor to queue
