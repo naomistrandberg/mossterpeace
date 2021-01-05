@@ -112,9 +112,9 @@ while True:
 
       # draw bar “chart” (one drop per % point) with baseline:
       if rounded >= baseline:
-        bar = '💧' * baseline + '|' + '💧' * (rounded - baseline)
+        bar = '☁' * baseline + '|' + '☁' * (rounded - baseline)
       else:
-        bar = '💧' * rounded + ' ' * (baseline - rounded) + '|'
+        bar = '☁' * rounded + ' ' * (baseline - rounded) + '|'
 
       label = str(rounded) + '%'
 
