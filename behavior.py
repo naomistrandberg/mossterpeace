@@ -47,6 +47,9 @@ while True:
       if previous > rounded: # humidity is increasing ↗
         # do nothing
 
+      # exit if
+      return
+
     # calculate baseline humidity:
     queue.append(rounded) # add one more reading from the sensor to queue
     queue = queue[-50:] # limit queue to the last 50 readings
