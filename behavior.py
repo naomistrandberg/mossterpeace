@@ -34,9 +34,9 @@ has_just_vibrated = False # create flag to prevent long vibrations (if humidity 
 legend  = '\n'
 legend += 'How to read the chart?\n'
 legend += '\n'
-legend += '☁️☁️☁️☁️☁️☁️☁️☁️🌧️🌧️🌧️🌧️ 75% ← Humidity in %\n'
-legend += '☁️☁️☁️☁️☁️☁️☁️☁️🌧️🌧️🌧️ 70% 🌿 ← Plant vibration triggered\n'
-legend += '☁️☁️☁️☁️☁️☁️☁️☁️ ← Baseline*\n'
+legend += '☂️☂️☂️☂️☂️☂️☂️☔️☔️☔️☔️ 75% ← Humidity in %\n'
+legend += '☂️☂️☂️☂️☂️☂️☂️☔️☔️☔️ 70% 🌿 ← Plant vibration triggered\n'
+legend += '☂️☂️☂️☂️☂️☂️☂️ ← Baseline*\n'
 legend += '\n'
 legend += '*After crossing this line, the first decrease in humidity will trigger a vibration.'
 legend += '\n'
@@ -112,9 +112,9 @@ while True:
 
       # draw bar “chart” (one drop per % point) with baseline:
       if rounded >= baseline:
-        bar = '☁️' * baseline + '|' + '🌧️' * (rounded - baseline)
+        bar = '☂️' * baseline + '☔️' * (rounded - baseline)
       else:
-        bar = '☁️' * rounded + ' ' * (baseline - rounded) + '|'
+        bar = '☂️' * rounded
 
       label = str(rounded) + '%'
 
@@ -132,6 +132,7 @@ while True:
     baseline = statistics.median(queue) # get median reading (to remove outliers)
     baseline = baseline + 5 # increases baseline to avoid flunctiations on ambient humidity
     baseline = round(baseline) # makes sure baseline is an integer
+    print( baseline )
 
   # give it a short break between loops
   time.sleep(.25)
