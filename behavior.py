@@ -62,10 +62,11 @@ while True:
 
         # prevent sequential vibrations
         if has_just_vibrated == True:
+          motor.value = 0 # don’t vibrate
           has_just_vibrated = False
 
         elif has_just_vibrated == False:
-          
+
           # play with intensity (from 0 to 1)
           random_intensity = float( decimal.Decimal( random.randrange( 50, 100) ) / 100 )
 
