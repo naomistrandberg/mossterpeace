@@ -131,6 +131,7 @@ while True:
     queue = queue[-50:] # limit queue to the last 50 readings
     baseline = statistics.median(queue) # get median reading (to remove outliers)
     baseline = baseline + 5 # increases baseline to avoid flunctiations on ambient humidity
+    baseline = round(baseline) # makes sure baseline is an integer
 
   # give it a short break between loops
   time.sleep(.25)
