@@ -25,18 +25,14 @@ while True:
   # check if reading was succesful
   if result.is_valid():
 
-    print('result is valid')
-
     # if it’s the first reading
     if baseline <= 0:
 
       # remove decimal places from humidity reading
       rounded = round(result.humidity)
 
-    # if there is a previous reading to set baseline humidity
+    # if there is a previous reading (to set baseline humidity)
     if baseline > 0:
-
-      print('baseline is larger than 0')
 
       # if there is a previous reading, store it on the previous variable
       if rounded > 0:
