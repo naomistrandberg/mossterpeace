@@ -64,4 +64,4 @@ while True:
     print( baseline )
 
   # give it a 1s break
-  time.sleep(1)
+  time.sleep(.25)
