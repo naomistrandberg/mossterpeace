@@ -71,16 +71,16 @@ while True:
         else:
 
           # play with intensity (from .5 to 1)
-          random_intensity = float( decimal.Decimal( random.randrange( 50, 100) ) / 100 )
+          random_intensity = float( decimal.Decimal( random.randrange(50, 100) ) / 100 )
 
           # play with duration (from .1 to .3)
-          random_duration = float( decimal.Decimal( random.randrange( 10, 30) ) / 100 )
+          random_duration = float( decimal.Decimal( random.randrange(10, 30) ) / 100 )
 
           # begin vibrating with the intensity we generated
           motor.value = random_intensity 
 
           # vibrate for a bit
-          time.sleep( random_duration ) 
+          time.sleep(random_duration) 
 
           # stop vibrating
           motor.value = 0
