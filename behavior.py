@@ -37,12 +37,12 @@ has_just_vibrated = False # create flag to prevent long vibrations (if humidity 
 legend  = '\n'
 legend += 'How to read the chart?\n'
 legend += '\n'
-legend += ':open_umbrella::open_umbrella::open_umbrella::umbrella::umbrella::umbrella:'
-legend += '☂️☂️☂️☂️☂️☂️☂️☔️☔️☔️☔️ 75% ← Humidity in %\n'
-legend += '☂️☂️☂️☂️☂️☂️☂️☔️☔️☔️ 70% 🌿 ← Plant vibration triggered\n'
-legend += '☂️☂️☂️☂️☂️☂️☂️ ← Baseline*\n'
+legend += '💧💧💧💧💧💧💧 ← More drops mean more humidity\n'
+legend += '💧💧💧💧💧💧💧☔️☔️☔️☔️ ← These mean the humidity is above the ambient baseline*\n'
+legend += '💧💧💧💧💧💧💧☔️☔️☔️☔️ 75% ← This is the humidity percentage\n'
+legend += '💧💧💧💧💧💧💧☔️☔️☔️ 70% 🌿 ← This appears when plant vibration was triggered\n'
 legend += '\n'
-legend += '*After crossing this line, the first decrease in humidity will trigger a vibration.'
+legend += '*After crossing the baseline, the first decrease in humidity will trigger a vibration.'
 legend += '\n'
 print( legend )
 
@@ -116,9 +116,9 @@ while True:
 
       # draw bar “chart” (one drop per % point) with baseline:
       if rounded >= baseline:
-        bar = '☂️' * baseline + '☔️' * (rounded - baseline)
+        bar = '💧' * baseline + '☔️' * (rounded - baseline)
       else:
-        bar = '☂️' * rounded
+        bar = '💧' * rounded
 
       label = str(rounded) + '%'
 
