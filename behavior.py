@@ -75,6 +75,7 @@ while True:
 
           # actually assign the values we generated
           motor.value = random_intensity # random number from 0 to 1
+          print( 'vibration: ' + str( random_intensity ) )
           time.sleep( random_duration ) # vibrate for a bit
 
           # set flag to true
@@ -92,8 +93,6 @@ while True:
     queue.append(rounded) # add one more reading from the sensor to queue
     queue = queue[-50:] # limit queue to the last 50 readings
     baseline = statistics.median(queue) # get median reading (to remove outliers)
-    print( queue )
-    print( baseline )
 
   # give it a 1s break
   time.sleep(.25)
