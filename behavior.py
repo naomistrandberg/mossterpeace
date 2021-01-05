@@ -70,8 +70,8 @@ while True:
           # play with intensity (from 0 to 1)
           random_intensity = float( decimal.Decimal( random.randrange( 50, 100) ) / 100 )
 
-          # play with duration (from 0.2 to 0.8)
-          random_duration = float( decimal.Decimal( random.randrange( 20, 80) ) / 100 )
+          # play with duration (from 0.1 to 0.3)
+          random_duration = float( decimal.Decimal( random.randrange( 10, 30) ) / 100 )
 
           # actually assign the values we generated
           motor.value = random_intensity # random number from 0 to 1
