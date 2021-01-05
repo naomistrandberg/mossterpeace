@@ -22,6 +22,7 @@ queue = [] # create empty list to house humidity readings
 baseline = 0 # create baseline variable and set it to 0, until first reading
 previous = 0 # create previous variable to house previous humidity reading
 rounded = 0 # create rounded variable and set it to 0, until first reading
+has_just_vibrated = False # create flag to prevent long vibrations (if humidity keeps dropping)
 
 # loop forever
 while True:
@@ -56,8 +57,13 @@ while True:
 
       # check if it’s time for plant to listen or to react:
       if previous > rounded: # if humidity is decreasing ↘
-        motor.value = 1 # we can play with intensity (from 0 to 1)
-        time.sleep(.5) # vibrate for a bit
+      
+        if has_just_vibrated:
+          has_just_vibrated = False
+        else:
+          motor.value = 1 # we can play with intensity (from 0 to 1)
+          time.sleep(.5) # vibrate for a bit
+          has_just_vibrated = True
 
       elif previous < rounded: # if humidity is increasing ↗
         motor.value = 0 # don’t vibrate
