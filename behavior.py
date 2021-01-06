@@ -47,7 +47,7 @@ baseline = 0 # create baseline variable and set it to 0, until first reading
 peak = 95 # create variable with maximum value to be read from the humidity sensor
 has_just_vibrated = False # create flag to prevent sequential vibrations (if humidity keeps dropping)
 icon = '' # create empty variable to house the leaf icon that goes into the chart
-last_interaction = time.time() # keeps track of the last time when a conversation took place
+last_interaction = time.time() # keeps track of the last time when a interaction took place
 current_needy_level = -1 # the current “mood” of the plant (begins as -1, but will use values 0, 1, 2 and 3)
 
 
@@ -146,6 +146,9 @@ while True:
     # turn base light off
     needy(-1)
 
+    # update time when most recent interaction occurred
+    last_interaction = time.time()
+
     # read data using GPIO 21
     instance = dht11.DHT11(pin = 21)
     result = instance.read()
@@ -204,9 +207,6 @@ while True:
 
         # if humidity is increasing ↗ (and is above baseline)
         if previous < rounded and previous > baseline: 
-          
-          # updates the time when the most recent conversation occurred
-          last_interaction = time.time()
 
           # allow it to vibrate again, once humidity drops
           has_just_vibrated = False
@@ -260,15 +260,17 @@ while True:
     # calculate elapsed time between now and last conversation (in seconds)
     elapsed = round(now - last_interaction)
     
-    if elapsed > 30:
+    # 60 seconds × number of minutes:
+
+    if elapsed > 10 * 3:
       # mood: FUCKING TALK TO ME
       needy(3) 
   
-    elif elapsed > 20:
+    elif elapsed > 10 * 2:
       # mood: why don’t you love me anymore?
       needy(2)
   
-    elif elapsed > 10:
+    elif elapsed > 10 * 1:
       # mood: missing u
       needy(1)
   
