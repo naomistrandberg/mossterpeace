@@ -59,7 +59,7 @@ while True:
   if button.is_pressed == False:
 
     # turn light on
-    led.on
+    led.on()
 
     # read data using GPIO 21
     instance = dht11.DHT11(pin = 21)
@@ -153,7 +153,7 @@ while True:
   else:
 
     # turn light off
-    led.off
+    led.off()
 
   # give it a short break between loops
   time.sleep(.5)
