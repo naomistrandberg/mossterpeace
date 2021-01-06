@@ -83,10 +83,8 @@ while True:
   
         # remove decimal places from humidity reading
         rounded = round(result.humidity)
-  
-        # check if it’s time for plant to listen or to react:
-  
-        # if humidity is decreasing ↘
+    
+        # if humidity is decreasing ↘ (and is above baseline)
         if previous > rounded and previous > baseline: 
   
           # prevent sequential vibrations
@@ -94,8 +92,8 @@ while True:
   
             # do not vibrate
             motor.value = 0
-            has_just_vibrated = False
-  
+          
+          # vibrate
           else:
   
             # play with intensity (from .5 to 1)
@@ -113,20 +111,16 @@ while True:
             # stop vibrating
             motor.value = 0
   
-            # set flag to true
+            # prevent it to vibrate again
             has_just_vibrated = True
-  
-        # if humidity is steady → or increasing ↗
-        else: 
-  
-          # do not vibrate
-          motor.value = 0
+
+        # if humidity is increasing (and is above baseline)
+        if previous > rounded and previous > baseline: 
+
+          # allow it to vibrate again, once humidity drops
           has_just_vibrated = False
   
-        # draw simple bar “chart” (one drop per % point):
-        # bar = '💧' * rounded
-  
-        # draw bar “chart” (one drop per % point) with baseline:
+        # draw “bar chart” (one drop per % point) with baseline:
         if rounded >= baseline:
           bar = '💧' * baseline + '☔️' * (rounded - baseline)
         else:
