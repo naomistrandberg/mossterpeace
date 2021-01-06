@@ -1,9 +1,15 @@
 from gpiozero import PWMLED
-from time import sleep
 from signal import pause
+import time
 
 led = PWMLED(22)
 
-led.pulse(fade_in_time=1, fade_out_time=1)
+last_interaction = timeit.timeit()
 
-pause()
+while True:
+
+  led.pulse(fade_in_time=1, fade_out_time=1)
+
+  now = timeit.timeit()
+  elapsed = end - start
+  print(elapsed)
