@@ -188,11 +188,6 @@ while True:
         intensity = translate(rounded, ambient_humidity, peak, .25, 1) # map value between humidity range & desired LED range
         vessel.value = intensity # direct coupling of vessel LED and humidty
 
-        print( 'rounded:', rounded )
-        print( 'baseline:', baseline )
-        print( 'peak:', peak )
-        print( 'intensity:', intensity )
-
 
 
 
