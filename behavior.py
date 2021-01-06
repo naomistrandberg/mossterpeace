@@ -150,4 +150,4 @@ while True:
     led.off()
 
   # give it a short break between loops
-  time.sleep(2)
+  time.sleep(.5)
