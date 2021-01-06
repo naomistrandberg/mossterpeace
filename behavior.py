@@ -134,7 +134,7 @@ while True:
         label = str(rounded) + '%'
 
         # print a new bar on the “chart”
-        print(bar, label, vibrated)
+        print(bar, label, icon)
 
         # remove leaf icon after vibration was triggered
         icon = ''
