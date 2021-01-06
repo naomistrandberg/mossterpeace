@@ -1,7 +1,7 @@
 # import tools for vibration motor
 from gpiozero import PWMOutputDevice
 
-# import tool for DIT button with copper tape
+# import tool for DIY button with copper tape
 from gpiozero import LED, Button
 
 # import tools for humidity sensor
@@ -37,20 +37,22 @@ queue = [] # create empty list to house humidity readings
 baseline = 0 # create baseline variable and set it to 0, until first reading
 previous = 0 # create previous variable to house previous humidity reading
 rounded = 0 # create rounded variable and set it to 0, until first reading
-has_just_vibrated = False # create flag to prevent long vibrations (if humidity keeps dropping)
+has_just_vibrated = False # create flag to prevent sequential vibrations (if humidity keeps dropping)
 
 # print legend
-legend  = '\n'
-legend += 'How to read the chart?\n'
-legend += '\n'
-legend += '💧💧💧💧💧💧💧 ← More drops mean more humidity\n'
-legend += '💧💧💧💧💧💧💧☔️☔️☔️☔️ ← Drops on umbrellas mean the humidity is slightly above the baseline*\n'
-legend += '💧💧💧💧💧💧💧☔️☔️☔️☔️ 75% ← This is just the humidity percentage\n'
-legend += '💧💧💧💧💧💧💧☔️☔️☔️ 70% 🌿 ← This appears when plant vibration was triggered\n'
-legend += '\n'
-legend += '*After crossing the ambient baseline, the first decrease in humidity will trigger a vibration.'
-legend += '\n'
-print( legend )
+legend  = """
+
+How to read the chart?
+
+💧💧💧💧💧💧💧 ← More drops mean more humidity
+💧💧💧💧💧💧💧☔️☔️☔️☔️ ← Drops on umbrellas mean the humidity is slightly above the baseline*
+💧💧💧💧💧💧💧☔️☔️☔️☔️ 75% ← This is just the humidity percentage
+💧💧💧💧💧💧💧☔️☔️☔️ 70% 🌿 ← This appears when plant vibration was triggered
+
+*After crossing the ambient baseline, the first decrease in humidity will trigger a vibration.
+
+"""
+print(legend)
 
 # loop forever
 while True:
