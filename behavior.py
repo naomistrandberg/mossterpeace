@@ -81,6 +81,10 @@ def needy(level):
 
   if level != current_needy_level:
 
+    if level == -1:
+      # turn the base lights off
+      base.off()
+
     if level == 0:
       # set base to light up with .25 intensity
       base.value = .25
@@ -114,8 +118,17 @@ def translate(value, from_min, from_max, to_min, to_max):
   # convert the original range into a 0-1 range (float)
   value_scaled = float(value - from_min) / float(from_span)
 
-  # Convert the 0-1 range into a value in the right range.
-  return to_min + (value_scaled * to_span)
+  # convert the 0-1 range into a value in the right range.
+  new_value = to_min + (value_scaled * to_span)
+
+  # make sure it’s within boundaries
+  if new_value < to_min:
+    new_value = to_min
+
+  if new_value > to_max:
+    new_value = to_max
+
+  return new_value
 
 
 
@@ -129,6 +142,9 @@ while True:
 
     # turn vessel light on
     vessel.on()
+
+    # turn base light off
+    needy(-1)
 
     # read data using GPIO 21
     instance = dht11.DHT11(pin = 21)
