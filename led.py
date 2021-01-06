@@ -39,20 +39,21 @@ while True:
   elapsed = round(now - last_interaction)
   print(elapsed)
 
-  if elapsed > 0:
-    # chillin’
-    needy(0)
-
-  elif elapsed > 10:
-    # missing u
-  	needy(1) 
+  if elapsed > 30:
+    # FUCKING TALK TO ME
+    needy(3) 
 
   elif elapsed > 20:
     # why don’t you love me anymore?
-  	needy(2) 
+    needy(2)
 
-  elif elapsed > 20:
-    # FUCKING TALK TO ME
-    needy(3) 
+  elif elapsed > 10:
+    # missing u
+    needy(1)
+
+  elif elapsed > 0:
+    # chillin’
+    needy(0)
+    
 
   time.sleep(.5)
