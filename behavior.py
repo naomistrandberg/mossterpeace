@@ -185,7 +185,7 @@ while True:
 
         # more humidity means a brighter light: 
         ambient_humidity = baseline - 5 # getting the actual median ambient humidity, not our slightly higher threshold
-        intensity = translate(rounded, ambient_humidity, peak, 0, 1) # our function to map values between 2 ranges
+        intensity = translate(rounded, ambient_humidity, peak, .25, 1) # map value between humidity range & desired LED range
         vessel.value = intensity # direct coupling of vessel LED and humidty
 
         print( 'rounded:', rounded )
