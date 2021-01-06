@@ -54,7 +54,7 @@ current_needy_level = -1 # the current “mood” of the plant (begins as -1, bu
 
 
 
-# print legend
+# creates legend for our emoji chart
 legend  = """
 
 How to read the chart?
@@ -67,7 +67,6 @@ How to read the chart?
 *After crossing the ambient baseline, the first decrease in humidity will trigger a vibration.
 
 """
-print(legend)
 
 
 
@@ -166,6 +165,9 @@ while True:
   
         # remove decimal places from humidity reading
         rounded = round(result.humidity)
+
+        # print chart legend
+        print(legend)
   
       # if there is a previous reading (to set baseline humidity)
       if baseline > 0:
