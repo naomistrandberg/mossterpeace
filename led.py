@@ -1,5 +1,4 @@
 from gpiozero import PWMLED
-from signal import pause
 import time
 
 base = PWMLED(22)
