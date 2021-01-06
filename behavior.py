@@ -114,8 +114,8 @@ while True:
             # prevent it to vibrate again
             has_just_vibrated = True
 
-        # if humidity is increasing (and is above baseline)
-        if previous > rounded and previous > baseline: 
+        # if humidity is increasing ↗ (and is above baseline)
+        if previous < rounded and previous > baseline: 
 
           # allow it to vibrate again, once humidity drops
           has_just_vibrated = False
