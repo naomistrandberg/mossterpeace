@@ -8,7 +8,7 @@ last_interaction = time.time()
 
 current_needy_level = None
 
-async def needy(level):
+def needy(level):
 
   if level != current:
 
