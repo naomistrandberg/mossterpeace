@@ -30,6 +30,10 @@ async def needy(level):
 
 while True:
 
+  now = time.time()
+  elapsed = round(now - last_interaction)
+  print(elapsed)
+
   if elapsed > 0:
     # chillin’
     needy( 0 )
@@ -45,9 +49,5 @@ while True:
   elif elapsed > 20:
     # FUCKING TALK TO ME
     needy( 3 ) 
-
-  now = time.time()
-  elapsed = now - last_interaction
-  print(elapsed)
 
   time.sleep(.5)
