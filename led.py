@@ -10,7 +10,7 @@ current_needy_level = None
 
 def needy(level):
 
-  if level != current:
+  if level != current_needy_level:
 
     if level == 0:
       base.value = .25
