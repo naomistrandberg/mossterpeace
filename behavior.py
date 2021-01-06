@@ -146,7 +146,7 @@ while True:
   if button.is_pressed == False:
 
     # turn vessel light on
-    vessel.on()
+    # vessel.on()
 
     # turn base light off
     needy(-1)
@@ -181,9 +181,15 @@ while True:
 
     
 
-        # more humidity means brighter lights (direct coupling of vessel LED and humidty)
-        intensity = translate(rounded, baseline, peak, 0, 1)
-        vessel.value = intensity
+        # more humidity means a brighter light: 
+        ambient_humidity = baseline - 5 # getting the actual median ambient humidity, not our slightly higher threshold
+        intensity = translate(rounded, ambient_humidity, peak, 0, 1) # our function to map values between 2 ranges
+        vessel.value = intensity # direct coupling of vessel LED and humidty
+
+        print( 'rounded:', rounded )
+        print( 'baseline:', baseline )
+        print( 'peak:', peak )
+        print( 'intensity:', intensity )
 
 
 
