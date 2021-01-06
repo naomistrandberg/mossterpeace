@@ -38,6 +38,7 @@ baseline = 0 # create baseline variable and set it to 0, until first reading
 previous = 0 # create previous variable to house previous humidity reading
 rounded = 0 # create rounded variable and set it to 0, until first reading
 has_just_vibrated = False # create flag to prevent sequential vibrations (if humidity keeps dropping)
+icon = '' # create empty variable to house the leaf icon that goes into the chart
 
 # print legend
 legend  = """
