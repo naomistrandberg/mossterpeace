@@ -76,28 +76,33 @@ print(legend)
 # creates a function to switch between “moods” of the base, by changing it’s LED behavior
 def needy(level):
   
-  # makes sure we’re changing the global variable (not creating a new local one)
+  # makes we update the global variable (not create a new one inside this function)
   global current_needy_level
 
   if level != current_needy_level:
 
     if level == -1:
+      print('mood: happy because someone is interacting with me')
       # turn the base lights off
       base.off()
 
     if level == 0:
+      print('mood: just chillin’')
       # set base to light up with .25 intensity
       base.value = .25
 
     elif level == 1:
+      print('mood: missing u')
       # set base light to pulsate slowly
       base.pulse(fade_in_time=2, fade_out_time=2)
 
     elif level == 2:
+      print('mood: why don’t you love me anymore?')
       # set base light to pulsate fastly
       base.pulse(fade_in_time=1, fade_out_time=1)
 
     elif level == 3:
+      print('mood: FUCKING TALK TO ME')
       # set base light to blink
       base.blink()
 
@@ -171,7 +176,19 @@ while True:
   
         # remove decimal places from humidity reading
         rounded = round(result.humidity)
+
+
+
     
+
+        # more humidity means brighter lights (direct coupling of vessel LED and humidty)
+        intensity = translate(rounded, baseline, peak, 0, 1)
+        vessel.value = intensity
+
+
+
+
+
         # if humidity is decreasing ↘ (and is above baseline)
         if previous > rounded and previous > baseline: 
   
@@ -232,13 +249,6 @@ while True:
 
 
 
-        # adds direct coupling of vessel LED with humidity
-        intensity = translate(rounded, baseline, peak, 0, 1)
-        vessel.value = intensity
-
-
-
-
 
       # calculate baseline humidity:
       queue.append(rounded) # add one more reading from the sensor to queue
@@ -259,6 +269,7 @@ while True:
 
     # calculate elapsed time between now and last conversation (in seconds)
     elapsed = round(now - last_interaction)
+    print( elapsed )
     
     # 60 seconds × number of minutes:
 
