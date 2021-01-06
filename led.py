@@ -1,4 +1,4 @@
-from gpiozero import 
+from gpiozero import PWMLED
 from time import sleep
 
 led = PWMLED(2)
