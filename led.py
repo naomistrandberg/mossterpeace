@@ -13,3 +13,5 @@ while True:
   now = time.time()
   elapsed = now - last_interaction
   print(elapsed)
+
+  time.sleep(.5)
