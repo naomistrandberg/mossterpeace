@@ -116,6 +116,9 @@ while True:
             # prevent it to vibrate again
             has_just_vibrated = True
 
+            # add icon to represent a vibration was triggered
+            icon = '🌿'
+
         # if humidity is increasing ↗ (and is above baseline)
         if previous < rounded and previous > baseline: 
 
@@ -129,14 +132,12 @@ while True:
           bar = '💧' * rounded
   
         label = str(rounded) + '%'
-  
-        # add a leaf if a vibration was triggered
-        vibrated = ''
-        if has_just_vibrated:
-          vibrated = '🌿'
-  
+
         # print a new bar on the “chart”
         print(bar, label, vibrated)
+
+        # remove leaf icon after vibration was triggered
+        icon = ''
       
       # calculate baseline humidity:
       queue.append(rounded) # add one more reading from the sensor to queue
