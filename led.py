@@ -9,6 +9,9 @@ last_interaction = time.time()
 current_needy_level = None
 
 def needy(level):
+  
+  # make sure we’re changing the global variable, and not creating new ones inside this function
+  global current_needy_level 
 
   if level != current_needy_level:
 
