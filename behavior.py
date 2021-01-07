@@ -43,6 +43,7 @@ button = Button(18)
 queue = [] # create empty list to house humidity readings
 previous = 0 # create previous variable to house previous humidity reading
 rounded = 0 # create rounded variable and set it to 0, until first reading
+threshold = 2 # add some percentage points to the ambient humidity to get a baseline
 baseline = 0 # create baseline variable and set it to 0, until first reading
 peak = 95 # create variable with maximum value to be read from the humidity sensor
 has_just_vibrated = False # create flag to prevent sequential vibrations (if humidity keeps dropping)
@@ -184,7 +185,7 @@ while True:
     
 
         # more humidity means a brighter light: 
-        ambient_humidity = baseline - 5 # getting the actual median ambient humidity, not our slightly higher threshold
+        ambient_humidity = baseline - threshold # getting the actual median ambient humidity, not our slightly higher threshold
         intensity = translate(rounded, ambient_humidity, peak, .25, 1) # map value between humidity range & desired LED range
         vessel.value = intensity # direct coupling of vessel LED and humidty
 
@@ -254,7 +255,7 @@ while True:
       queue.append(rounded) # add one more reading from the sensor to queue
       queue = queue[-50:] # limit queue to the last 50 readings
       baseline = statistics.median(queue) # get median reading (to remove outliers)
-      baseline = baseline + 5 # increases baseline to avoid flunctiations on ambient humidity
+      baseline = baseline + threshold # increases baseline to avoid flunctiations on ambient humidity
       baseline = round(baseline) # makes sure baseline is an integer
 
 
