@@ -204,14 +204,11 @@ while True:
           # vibrate
           else:
   
-            # play with intensity (from .5 to 1)
-            random_intensity = float( decimal.Decimal( random.randrange(50, 100) ) / 100 )
-  
             # play with duration (from .5 to 1)
             random_duration = float( decimal.Decimal( random.randrange(50, 100) ) / 100 )
-  
-            # begin vibrating with the intensity we generated
-            motor.value = random_intensity 
+
+            # begin vibrating with maximum intensity
+            motor.value = 1
   
             # vibrate for a bit
             time.sleep(random_duration) 
