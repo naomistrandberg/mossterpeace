@@ -274,17 +274,15 @@ while True:
     elapsed = round(now - last_interaction)
     print( elapsed )
     
-    # 60 seconds × number of minutes:
-
-    if elapsed > 10 * 3:
+    if elapsed > 30:
       # mood: FUCKING TALK TO ME
       needy(3) 
   
-    elif elapsed > 10 * 2:
+    elif elapsed > 20:
       # mood: why don’t you love me anymore?
       needy(2)
   
-    elif elapsed > 10 * 1:
+    elif elapsed > 10:
       # mood: missing u
       needy(1)
   
